@@ -1,34 +1,34 @@
+from collections import Counter
 import sys
+import os
 
 class Comand:
 	arguments = None
 	flags = None
-	
-	# need to work on the constructor of the command Class. Need to figure out how to check
-	# the validity of the arguments.
+	help_c = None
+	verbose = False
+
 	def __init__(self, line):
-		line_len = len(line)
-		if (line_len != 3):
-			self.__print_err("Wrong number of arguments !\n")
-			self.__command_help()
+		splitted_line = line.split(' ')
+		line_len = splitted_line.__len__()
+		help_c = '../help_prompts/general_help.txt'
+		if (line_len == 2 or line_len == 3):
+			self.__is_line_valid(line, line_len)
 		else:
-			if(len(line) == 3 and(not(self.__flags_checker(line[1]) or self.__commands_checker(line[1])))):
-				self.__print_err("Not a valid command!\n")
-				self.__command_help()
-			else:
-				self.__command_dispatcher(line)
+			self.print_err("Wrong number of arguments !\n")
+			self.command_help(help_c)
 	
-	def __print_err(message):
+	def print_err(self, message):
 		print(message, file=sys.stderr)
 
-	def __command_help(self):
-		with open('../help_prompts/help_text.txt', 'r') as file:
+	def command_help(self, path):
+		with open(path, 'r') as file:
 			help_text = file.read()
 		print(help_text)
 	
 	def __flags_checker(self, flags):
-		sflags_array = ["v","s","0"]
-		if flags.startwith("-"):
+		sflags_array = ["v","0"]
+		if flags.startwith("-") and len(flags) > 1:
 			flags = flags[1:]
 		else:
 			return False
@@ -53,6 +53,17 @@ class Comand:
 				return False
 		return True
 	
-	def __command_dispatcher(self, line):
+	def __file_checker(self, file_path):
+		return os.path.exists(file_path)
+	
+	def command_dispatcher(self, line):
 		print(line)
-
+	
+	def __is_line_valid(self, line, line_len):
+		if (line_len == 2):
+			if (not(self.__commands_checker(line[1]))):
+				return False
+		elif (line_len == 3):
+			if(not(self.__flags_checker(line[1]) or self.__commands_checker(line[2]))):
+				return False
+		return True
