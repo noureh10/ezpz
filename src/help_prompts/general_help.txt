@@ -1,0 +1,20 @@
+Usage:
+ezpz [flags] [arguments] {FILE_NAME}
+
+To configure ezpz, please do as follow:
+
+   ezpz -s server.ini STEAMAPI_KEY
+   ezpz --set server.ini STEAMAPI_KEY
+
+Once you achieved that, you can launch the different set of commands:
+
+   interactive  launch interactive manager mode.
+   status       get the status of the server.
+   modsize      get the number of mods installed and the size
+   modlist      get the list of mods installed to the server
+   version      get the current running version of ezpz
+   update       update ezpz to the latest version
+Available flags:
+   -v           verbose mode, useful to track underlying issues with some actions performed
+   -s           set a current working configuration file
+   -0           end each output line with NULL, not newline
