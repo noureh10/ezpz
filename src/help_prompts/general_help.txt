@@ -17,4 +17,3 @@ Once you achieved that, you can launch the different set of commands:
    help         show the general help panel.
 Available flags:
    -v           verbose mode, useful to track underlying issues with some actions performed
-   -0           end each output line with NULL, not newline
