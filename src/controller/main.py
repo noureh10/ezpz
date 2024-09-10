@@ -5,6 +5,7 @@ from command_dispatcher import *
 flags_args = None
 cmds_args = None
 potential_path = None
+
 general_help_path = "help_prompts/general_help.txt"
 
 def flags_checker(flags):
@@ -63,6 +64,10 @@ def arguments_rule_check(flags, cmd, path):
 	return True
 
 def arguments_checker(arguments):
+	global flags_args
+	global cmds_args
+	global potential_path
+	
 	mixed_args = False
 	prefix_match = False
 	i = 0
@@ -90,9 +95,9 @@ def arguments_checker(arguments):
 def controller():
 	'''Function responsible for the control flow of the application'''
 	if(arguments_checker(sys.argv)):
-		print("OK")
+		command_dispatch(flags_args, cmds_args, potential_path)
 	else:
-		sys.exit(1)
+		command_error(sys.argv)
 
 if __name__ == "__main__":
 	controller()
