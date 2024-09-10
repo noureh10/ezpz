@@ -1,5 +1,21 @@
+import command as cmd
 import requests
-import re
+
+class Modlist(cmd.Command):
+	def __init__(self, flags, command):
+		super().__init__(flags, command)
+	
+	def test(self):
+		print(cmd.Command.cmd_argument)
+
+
+
+
+
+
+
+
+
 
 def get_mod_details(workshop_id):
     url = "https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/"
@@ -52,18 +68,25 @@ def extract_mod_id(text):
         return match.group(1)
     return None
 
-def extract_map_id(text)
+def extract_map_id(text):
 	match = re.search(r'')
 
 ini_file = "testfile.ini"
 
-while True:
-	user_input = input("Enter the Steam URL for Workshop : \n")
-	if user_input.lower == 'done':
-		break
-	workshop_id = extract_workshop_id(user_input)
-	if workshop_id:
-		w_id = extract_workshop_id(user_input)
-		m_id = get_mod_description(workshop_id)
-		if w_id and m_id:
-			add_mod_to_file(ini_file, w_id, m_id)
+# while True:
+# 	user_input = input("Enter the Steam URL for Workshop : \n")
+# 	if user_input.lower == 'done':
+# 		break
+# 	workshop_id = extract_workshop_id(user_input)
+# 	if workshop_id:
+# 		w_id = extract_workshop_id(user_input)
+# 		print(w_id)
+# 		m_id = get_mod_description(workshop_id)
+# 		m_id = extract_mod_id(m_id)
+# 		print(m_id)
+# 		if w_id and m_id:
+# 			add_mod_to_file(ini_file, w_id, m_id)
+
+test = Modlist("bonjour", "aurevoir")
+
+test.test()
