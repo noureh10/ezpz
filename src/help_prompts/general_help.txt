@@ -6,8 +6,8 @@ To configure ezpz, please do as follow:
    ezpz setconfig
 
 Once you achieved that, you can launch the different set of commands:
-
    setconfig    set a configuration file that ezpz will be working on.
+   start        start the project zomboid server
    interactive  launch interactive manager mode.
    status       get the ongoing status of the server.
    modsize      check the number of mods installed and the size of them.
@@ -17,3 +17,4 @@ Once you achieved that, you can launch the different set of commands:
    help         show the general help panel.
 Available flags:
    -v           verbose mode, useful to track underlying issues with some actions performed
+   -s           silent mode, we won't wake up the horde
