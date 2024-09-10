@@ -1,13 +1,13 @@
-import commands.command as cmd
 import sys
 import os
+from command_dispatcher import *
 
 flags_args = None
 cmds_args = None
 potential_path = None
+general_help_path = "help_prompts/general_help.txt"
 
 def flags_checker(flags):
-	'''Need to see how tuples work in python so its more readable'''
 	short_flags = [
 		"v",
 		"s"
@@ -29,13 +29,15 @@ def flags_checker(flags):
 
 def command_checker(command):
 	commands_array = [
-			"interactive",
 			"setconfig",
+			"start",
+			"interactive",
 			"status",
 			"modsize",
 			"modlist",
 			"version",
-			"update"
+			"update",
+			"help"
 	]
 	for cmd in commands_array:
 		if cmd == command:
@@ -50,11 +52,19 @@ def path_checker(working_command, checked_command, path, extension):
 				return True
 	return False
 
+def arguments_rule_check(flags, cmd, path):
+	sc_command = "setconfig"
+	extension = ".ini"
+	if (not(command_checker(cmd) and flags_checker(flags)
+		and (not path or path_checker(cmds_args, sc_command ,path, extension)))):
+		return False
+	elif (not (cmd == sc_command) and path):
+		return False
+	return True
+
 def arguments_checker(arguments):
 	mixed_args = False
 	prefix_match = False
-	sc_command = "setconfig"
-	extension = ".ini"
 	i = 0
 	j = 0
 	if (len(arguments) > 1):
@@ -70,22 +80,17 @@ def arguments_checker(arguments):
 		else:
 			mixed_args = True
 		j+=1
-
 	flags_args = arguments[0:i]
+	if (len(arguments) == i):
+		return False
 	cmds_args = arguments[i]
 	potential_path = arguments[i+1:j]
-
-	if (not(command_checker(cmds_args) and flags_checker(flags_args)
-		and (not potential_path or path_checker(cmds_args, sc_command ,potential_path, extension)))):
-		return False
-	elif (not (cmds_args == sc_command) and potential_path):
-		return False
-	return True
+	return arguments_rule_check(flags_args, cmds_args, potential_path)
 
 def controller():
-	'''Function responsible for the control flow of the CLI'''
-	if (arguments_checker(sys.argv)):
-		working_command = cmd.Command(cmds_args, flags_args, potential_path)
+	'''Function responsible for the control flow of the application'''
+	if(arguments_checker(sys.argv)):
+		print("OK")
 	else:
 		sys.exit(1)
 
