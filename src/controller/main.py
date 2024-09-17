@@ -11,11 +11,9 @@ general_help_path = "help_prompts/general_help.txt"
 def flags_checker(flags):
 	short_flags = [
 		"v",
-		"s"
 	]
 	long_flags = [
 		"verbose",
-		"silent"
 	]
 	for fl in flags:
 		if fl.startswith("--"):
@@ -35,7 +33,6 @@ def command_checker(command):
 			"interactive",
 			"status",
 			"modsize",
-			"modlist",
 			"version",
 			"update",
 			"help"
@@ -95,7 +92,7 @@ def arguments_checker(arguments):
 def controller():
 	'''Function responsible for the control flow of the application'''
 	if(arguments_checker(sys.argv)):
-		command_dispatch(flags_args, cmds_args, potential_path)
+		command_dispatch(cmds_args, flags_args, potential_path)
 	else:
 		command_error(sys.argv)
 
