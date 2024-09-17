@@ -7,6 +7,8 @@ bad_path = "Wrong path, enter a valid path"
 class Command:
 	cmd_argument = None
 	flags_arguments = None
+	verbose = False
+	silent = False
 
 	def __init__(self, flags ,command):
 		self.set_args(flags, command)
