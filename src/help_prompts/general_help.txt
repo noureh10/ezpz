@@ -1,5 +1,5 @@
 Usage:
-ezpz [flags] [arguments]
+ezpz [FLAGS] [COMMANDS] [~PATH]
 
 To configure ezpz, please do as follow:
 
@@ -10,7 +10,6 @@ Once you achieved that, you can launch the different set of commands:
    start        start the project zomboid server
    interactive  launch interactive manager mode.
    status       get the ongoing status of the server.
-   modsize      check the number of mods installed and the size of them.
    modlist      get the list of mods installed to the server.
    version      show the current running version of ezpz.
    update       update ezpz to the latest version.
