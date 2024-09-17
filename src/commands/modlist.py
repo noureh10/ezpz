@@ -1,4 +1,4 @@
-import command as cmd
+import commands.command as cmd
 import requests
 
 class Modlist(cmd.Command):
@@ -6,14 +6,7 @@ class Modlist(cmd.Command):
 		super().__init__(flags, command)
 	
 	def test(self):
-		print(cmd.Command.cmd_argument)
-
-
-
-
-
-
-
+		print(self.cmd_argument)
 
 
 
@@ -86,7 +79,3 @@ ini_file = "testfile.ini"
 # 		print(m_id)
 # 		if w_id and m_id:
 # 			add_mod_to_file(ini_file, w_id, m_id)
-
-test = Modlist("bonjour", "aurevoir")
-
-test.test()
