@@ -10,7 +10,6 @@ class SetConfig(cmd.Command):
 
 	def check_if_config_file(self, config_file):
 		if (not os.path.exists(config_file)):
-			self.print_err("Config file does not exist")
 			return False
 		else:
 			return True

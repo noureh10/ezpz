@@ -10,7 +10,6 @@ import commands.setconfig as setconfig
 # Error paths
 general_help_error = "help_prompts/general_help.txt"
 
-
 def command_error(argument):
 	print(f"Usage: ezpz [FLAGS] [COMMAND] [~PATH]")
 	print(f"Type 'ezpz help' for more information on a specific command.")
