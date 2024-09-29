@@ -14,6 +14,9 @@ Once you achieved that, you can launch the different set of commands:
    version      show the current running version of ezpz.
    update       update ezpz to the latest version.
    help         show the general help panel.
+   refresh      this command has for sole purpose to get back to its original status.
+                By doing this, you ensure that the application clears every data.
 Available flags:
    -v           verbose mode, useful to track underlying issues with some actions performed
-   -s           silent mode, we won't wake up the horde
+
+   The CLI is silent by default.
