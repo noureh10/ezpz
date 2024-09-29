@@ -3,16 +3,21 @@ import os
 
 # Errors
 bad_path = "Wrong path, enter a valid path"
+exit_failure = 1
 
 class Command:
 	cmd_argument = None
 	flags_arguments = None
 	verbose = False
-	silent = False
 
 	def __init__(self, flags ,command):
-		self.set_args(flags, command)
+		self.__set_args(flags, command)
+		self.verbose = self.is_verbose(flags)
 
+	def error_and_exit(self, message):
+		self.print_err(message)
+		sys.exit(exit_failur)
+	
 	def print_err(self, message):
 		print(message, file=sys.stderr)
 
@@ -24,7 +29,7 @@ class Command:
 		else:
 			self.print_err(bad_path)
 
-	def set_args(self, flags , command):
+	def __set_args(self, flags , command):
 		self.set_flags_arguments(flags)
 		self.set_cmd_arguments(command)
 
@@ -35,3 +40,13 @@ class Command:
 	def set_flags_arguments(self, flags):
 		if (flags):
 			self.flags_arguments = flags
+
+	def is_verbose(self, flags):
+		if (not flags):
+			return False
+		elif (flags[0] == "-v" or flags[0] == "--verbose"):
+			return True
+		return False
+
+	def check_if_file_exists(self, path):
+		return os.path.exists(path)
