@@ -1,6 +1,6 @@
 import sys
 import os
-from command_dispatcher import *
+from controller.command_dispatcher import *
 
 flags_args = None
 cmds_args = None
