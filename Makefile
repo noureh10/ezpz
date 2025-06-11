@@ -7,6 +7,8 @@ EXECUTABLE_NAME = ezpz
 SRC_DIR = src
 OBJ_DIR = objects
 
+TUI_DEP = /usr/local/include/ftxui
+
 FILES = $(SRC_DIR)/commands/ACommand.cpp \
         $(SRC_DIR)/commands/Help.cpp \
         $(SRC_DIR)/commands/Interactive.cpp \
@@ -30,7 +32,9 @@ HEADER = $(SRC_DIR)/commands/command_header/ACommand.hpp \
          $(SRC_DIR)/commands/command_header/Version.hpp
 
 CC = c++
-CXXFLAGS = -Wall -Wextra -g -std=c++17 -I$(SRC_DIR)
+CXXFLAGS = -Wall -Wextra -g -std=c++17 -I$(SRC_DIR) -I$(TUI_DEP)
+LDFLAGS = -L/usr/local/lib -lftxui-component -lftxui-dom -lftxui-screen -pthread
+
 
 GREEN = \033[0;32m
 BLUE = \033[0;34m
@@ -40,7 +44,7 @@ RESET = \033[0m
 all: $(EXECUTABLE_NAME)
 
 $(EXECUTABLE_NAME): $(OBJ)
-	@$(CC) $(CXXFLAGS) $(OBJ) -o $(EXECUTABLE_NAME)
+	@$(CC) $(CXXFLAGS) $(OBJ) -o $(EXECUTABLE_NAME) $(LDFLAGS)
 	@printf "$(GREEN)- $(EXECUTABLE_NAME) is ready\n$(RESET)"
 
 run: all
