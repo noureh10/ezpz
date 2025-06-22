@@ -2,7 +2,7 @@
  * @ Author: Nour Echaara
  * @ Create Time: 2025-06-15 19:18:44
  * @ Modified by: Nour Echaara
- * @ Modified time: 2025-06-21 23:35:42
+ * @ Modified time: 2025-06-22 13:41:46
  */
 
 #include "WorkshopItem.hpp"
@@ -10,7 +10,7 @@
 /**
  * @brief 
  * the hasCycleUtil is here to check if any workshop item has a circular dependency starting from the current
- * item, avoiding infine cycles.
+ * item, avoiding infinite cycles.
  * @param visited set of fully explored workshop items
  * @param recursionStack current path of the DFS
  */
@@ -35,6 +35,18 @@ WorkshopItem::WorkshopItem(unsigned int workshopID) : _workshopID(workshopID) {}
 
 unsigned int WorkshopItem::getID() const {
     return (_workshopID);
+}
+
+std::string& WorkshopItem::getWorkshopName() const {
+    return (_workshop_name);
+}
+
+std::string& WorkshopItem::getWorkshopModDescription() const {
+    return (_workshop_item_descritpion);
+}
+
+uintmax_t WorkshopItem::getNonFormattedFilesize() const {
+    return (std::filesystem::file_size(this->_workshop_item_path));
 }
 
 bool WorkshopItem::addDependency(WorkshopItem* dependency) {
