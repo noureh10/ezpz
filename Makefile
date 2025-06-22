@@ -10,26 +10,26 @@ OBJ_DIR = objects
 TUI_DEP = /usr/local/include/ftxui
 
 FILES = $(SRC_DIR)/commands/ACommand.cpp \
-        $(SRC_DIR)/commands/Help.cpp \
-        $(SRC_DIR)/commands/Interactive.cpp \
-        $(SRC_DIR)/commands/Modlist.cpp \
-        $(SRC_DIR)/commands/Setconfig.cpp \
-        $(SRC_DIR)/commands/Start.cpp \
-        $(SRC_DIR)/commands/Status.cpp \
-        $(SRC_DIR)/commands/Version.cpp \
-        $(SRC_DIR)/main.cpp
+		$(SRC_DIR)/commands/Help.cpp \
+		$(SRC_DIR)/terminal_ui/Interactive.cpp \
+		$(SRC_DIR)/commands/Modlist.cpp \
+		$(SRC_DIR)/commands/Setconfig.cpp \
+		$(SRC_DIR)/commands/Start.cpp \
+		$(SRC_DIR)/commands/Status.cpp \
+		$(SRC_DIR)/commands/Version.cpp \
+		$(SRC_DIR)/main.cpp
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(FILES:$(SRC_DIR)/%.cpp=%.o))
 DEPS = $(OBJ:.o=.d)
 
 HEADER = $(SRC_DIR)/commands/command_header/ACommand.hpp \
-         $(SRC_DIR)/commands/command_header/Help.hpp \
-         $(SRC_DIR)/commands/command_header/Interactive.hpp \
-         $(SRC_DIR)/commands/command_header/Modlist.hpp \
-         $(SRC_DIR)/commands/command_header/SetConfig.hpp \
-         $(SRC_DIR)/commands/command_header/Start.hpp \
-         $(SRC_DIR)/commands/command_header/Status.hpp \
-         $(SRC_DIR)/commands/command_header/Version.hpp
+		$(SRC_DIR)/commands/command_header/Help.hpp \
+		$(SRC_DIR)/terminal_ui/terminal_ui_header/Interactive.hpp \
+		$(SRC_DIR)/commands/command_header/Modlist.hpp \
+		$(SRC_DIR)/commands/command_header/SetConfig.hpp \
+		$(SRC_DIR)/commands/command_header/Start.hpp \
+		$(SRC_DIR)/commands/command_header/Status.hpp \
+		$(SRC_DIR)/commands/command_header/Version.hpp
 
 CC = c++
 CXXFLAGS = -Wall -Wextra -g -std=c++17 -I$(SRC_DIR) -I$(TUI_DEP)
