@@ -2,11 +2,11 @@
  * @ Author: Nour Echaara
  * @ Create Time: 2025-06-15 19:36:59
  * @ Modified by: Nour Echaara
- * @ Modified time: 2025-06-21 23:35:40
+ * @ Modified time: 2025-06-22 11:49:41
  */
 
 #include "WorkshopManager.hpp"
-#include "WorkshopItem.hpp"
+
 
 std::shared_ptr<WorkshopItem> WorkshopManager::createItem(unsigned int id) {
     auto item = std::make_shared<WorkshopItem>(id);
@@ -22,4 +22,6 @@ std::shared_ptr<WorkshopItem> WorkshopManager::getItem(unsigned int id) const {
         return (nullptr);
 }
 
-void WorkshopManager::showItem(unsigned)
+const std::unordered_map<unsigned int, std::shared_ptr<WorkshopItem>>& WorkshopManager::getItems(void) const {
+    return (items);
+}
