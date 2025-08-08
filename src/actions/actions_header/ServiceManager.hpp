@@ -1,14 +1,23 @@
-#ifndef SERVICE_MANAGER
-# define SERVICE_MANAGER
+#ifndef SERVICE_MANAGER_HPP
+# define SERVICE_MANAGER_HPP
 
+#include "Service.hpp"
 
-// Class responsible to handle pz server as services (systemd in mind)
+typedef enum service_state {
+	ACTIVE,
+	INACTIVE,
+	RELOADING,
+	FAILED,
+	ACTIVATING,
+	DEACTIVATING
+};
 
-class Service;
 class ServiceManager {
+	private:
+		std::set<std::tuple<unsigned int, Service, service_state>> service_set;
 	public:
+		ServiceManager(void);
 		bool isTemplateInstalled(void);
-
 		// Service operations
 		bool createNewService(std::string service_name);
 		bool startService(Service service);
@@ -17,7 +26,6 @@ class ServiceManager {
 		bool stopServices(std::vector<unsigned int> services);
 		bool deleteService(Service service);
 		bool deleteServices(std::vector<unsigned int> services);
-
 		//Getter
 		const Service getService(unsigned int id);
 };
